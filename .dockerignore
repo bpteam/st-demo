@@ -1,0 +1,4 @@
+/vendor
+/var
+/docker-compose.yml
+/Dockerfile

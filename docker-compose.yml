@@ -1,0 +1,21 @@
+version: '2.4'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    ports:
+      - '127.1:80:80'
+
+  worker-track-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: php /app/bin/console messenger:consume -vvv async
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6.0.8-alpine3.12
